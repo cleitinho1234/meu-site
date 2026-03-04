@@ -1,59 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Meu Primeiro Site</title>
+    <title>Meu Site</title>
 
     <style>
         body {
             margin: 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-            url("https://images.unsplash.com/photo-1518770660439-4636190af475");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0f0f0f, #000000);
             font-family: Arial, sans-serif;
             text-align: center;
-        }
-
-        .container {
-            margin-top: 150px;
+            color: #00ffe0;
         }
 
         h1 {
-            font-size: 40px;
+            margin-top: 80px;
+            font-size: 38px;
+            text-shadow: 0 0 10px #00ffe0, 0 0 25px #00ffe0;
         }
 
-        button {
-            padding: 15px 30px;
-            font-size: 16px;
+        .botao-container {
+            position: absolute;
+            animation: mover 80s infinite alternate ease-in-out;
+        }
+
+        .botao {
+            padding: 20px 50px;
+            font-size: 20px;
             border: none;
-            border-radius: 8px;
-            background-color: #00ff88;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            color: white;
             cursor: pointer;
+            box-shadow: 0 0 25px #ff0000;
             transition: 0.3s;
         }
 
-        button:hover {
-            background-color: #00cc6a;
+        .botao:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #ff7300;
+        }
+
+        /* IMAGEM EM CIMA DO BOTÃO (SEM COBRIR) */
+        .botao-container img {
+            display: block;
+            margin: 0 auto -20px auto; /* valor negativo aproxima da borda do botão */
+            width: 110px;
+            pointer-events: none;
+        }
+
+        @keyframes mover {
+            0%   { top: 60%; left: 10%; }
+            50%  { top: 50%; left: 60%; }
+            100% { top: 70%; left: 80%; }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Eu estou virando programador 🚀</h1>
-        <p>Esse é meu primeiro site profissional.</p>
 
-        <button onclick="mostrarMensagem()">
-            Clique aqui
+    <h1>Clique no botão abaixo e prossiga</h1>
+
+    <div class="botao-container">
+        <!-- IMAGEM FICA EM CIMA DO BOTÃO -->
+        <img src="luffy.png">
+
+        <button class="botao" onclick="proximo()">
+            Prosseguir
         </button>
     </div>
 
     <script>
-        function mostrarMensagem() {
-            alert("Você está evoluindo 🔥");
+        function proximo() {
+            alert("Modo Pirata Ativado 🏴‍☠️🔥");
         }
     </script>
+
 </body>
 </html>
