@@ -69,26 +69,31 @@
             100% { top: 70%; left: 80%; }
         }
 
-        /* ADAPTAÇÃO PARA CELULAR */
-        @media screen and (max-width: 480px) {
+        /* AJUSTE REAL PARA CELULAR */
+        @media (max-width: 768px) {
+
             body {
-                background-size: contain;        /* mostra a imagem inteira */
-                background-position: top center; /* centraliza no topo */
-                background-repeat: no-repeat;    /* não repete a imagem */
+                background-size: contain;
+                background-position: center top;
+                background-color: black;
             }
-            h1 {
+
+            h1{
                 font-size: 28px;
                 margin-top: 40px;
             }
-            .botao-container img {
-                width: 100px;
-                margin-bottom: -20px;
+
+            .botao-container img{
+                width:100px;
             }
-            .botao {
-                padding: 15px 35px;
-                font-size: 16px;
+
+            .botao{
+                font-size:16px;
+                padding:15px 35px;
             }
+
         }
+
     </style>
 </head>
 
@@ -106,7 +111,7 @@
     <script>
         function proximo() {
             alert("MUITO BEM COMPANHEIRO 🏴‍☠️🔥");
-            window.open("downloads.html", "_blank"); // abre downloads.html em nova aba
+            window.open("downloads.html", "_blank");
         }
     </script>
 
