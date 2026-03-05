@@ -68,6 +68,32 @@
             50%  { top: 50%; left: 60%; }
             100% { top: 70%; left: 80%; }
         }
+
+        /* AJUSTE REAL PARA CELULAR */
+        @media (max-width: 768px) {
+
+            body {
+                background-size: contain;
+                background-position: center top;
+                background-color: black;
+            }
+
+            h1{
+                font-size: 28px;
+                margin-top: 40px;
+            }
+
+            .botao-container img{
+                width:100px;
+            }
+
+            .botao{
+                font-size:16px;
+                padding:15px 35px;
+            }
+
+        }
+
     </style>
 </head>
 
@@ -77,14 +103,17 @@
 
     <div class="botao-container">
         <img src="luffy.png">
-
-        <a href="downloads.html">
-            <button class="botao">
-                Prosseguir
-            </button>
-        </a>
-
+        <button class="botao" onclick="proximo()">
+            Prosseguir
+        </button>
     </div>
+
+    <script>
+        function proximo() {
+            alert("MUITO BEM COMPANHEIRO 🏴‍☠️🔥");
+            window.open("downloads.html", "_blank");
+        }
+    </script>
 
 </body>
 </html>
