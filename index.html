@@ -68,6 +68,27 @@
             50%  { top: 50%; left: 60%; }
             100% { top: 70%; left: 80%; }
         }
+
+        /* ADAPTAÇÃO PARA CELULAR */
+        @media screen and (max-width: 480px) {
+            body {
+                background-size: contain;        /* mostra a imagem inteira */
+                background-position: top center; /* centraliza no topo */
+                background-repeat: no-repeat;    /* não repete a imagem */
+            }
+            h1 {
+                font-size: 28px;
+                margin-top: 40px;
+            }
+            .botao-container img {
+                width: 100px;
+                margin-bottom: -20px;
+            }
+            .botao {
+                padding: 15px 35px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 
@@ -85,8 +106,7 @@
     <script>
         function proximo() {
             alert("MUITO BEM COMPANHEIRO 🏴‍☠️🔥");
-            // Abre a página downloads.html em uma nova aba
-            window.open("downloads.html", "_blank");
+            window.open("downloads.html", "_blank"); // abre downloads.html em nova aba
         }
     </script>
 
