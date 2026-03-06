@@ -1,64 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Seus Downloads</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-image: url("luffy-fundo.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #ffcc00;
-            text-shadow:
-                0 0 10px #ff0000,
-                0 0 20px #ff7300,
-                0 0 30px #ffcc00;
-        }
+<title>Seus Downloads</title>
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 50px; /* deixa o texto mais pra cima */
-        }
+<style>
 
-        .titulo {
-            font-size: 40px;
-            font-weight: bold;
-            margin-bottom: 50px; /* espaço para os futuros botões de download */
-            text-align: center;
-        }
+body{
+margin:0;
+font-family:Arial;
+background-image:url("luffy-fundo.jpg");
+background-size:cover;
+background-position:center;
+color:white;
+}
 
-        .download-item {
-            width: 300px;
-            padding: 15px 25px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff0000, #ff7300);
-            color: white;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #ff0000;
-            transition: 0.3s;
-        }
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:60px;
+}
 
-        .download-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px #ff7300;
-        }
-    </style>
+.titulo{
+font-size:40px;
+color:#ffcc00;
+text-shadow:0 0 10px red;
+margin-bottom:40px;
+}
+
+.download{
+display:flex;
+align-items:center;
+background:rgba(0,0,0,0.6);
+padding:15px 20px;
+border-radius:15px;
+width:350px;
+margin-bottom:20px;
+box-shadow:0 0 20px red;
+}
+
+.download img{
+width:45px;
+margin-right:15px;
+}
+
+.nome{
+flex:1;
+font-size:20px;
+}
+
+.botao{
+background:linear-gradient(45deg,#ff0000,#ff7300);
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.botao:hover{
+transform:scale(1.1);
+}
+
+</style>
 </head>
-<body>
-    <div class="container">
-        <div class="titulo">AQUI ESTÁ SEUS DOWNLOADS</div>
 
-        <!-- Aqui vamos adicionar os botões de download futuramente -->
-        <!-- <div class="download-item">Download 1</div> -->
-        <!-- <div class="download-item">Download 2</div> -->
-    </div>
+<body>
+
+<div class="container">
+
+<div class="titulo">
+AQUI ESTÁ SEUS DOWNLOADS
+</div>
+
+<div class="download">
+
+<img src="delta.png">
+
+<div class="nome">
+Delta Executor
+</div>
+
+<a href="delta.html">
+<button class="botao">
+Baixar
+</button>
+</a>
+
+</div>
+
+</div>
+
 </body>
 </html>
