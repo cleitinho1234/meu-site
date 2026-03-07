@@ -6,67 +6,73 @@
   <title>Para Edilane</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      margin: 0;
+      background: #ffe6f0;
+      overflow: hidden;
       font-family: 'Arial', sans-serif;
-    }
-
-    .heart-button {
-      width: 150px;
-      height: 150px;
-      background: red;
+      margin: 0;
+      height: 100vh;
       position: relative;
-      transform: rotate(-45deg);
-      cursor: pointer;
-      animation: beat 1s infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
+    }
+
+    h1 {
       text-align: center;
-      border: none;
-      outline: none;
+      margin-top: 50px;
+      color: #ff1a75;
     }
 
-    .heart-button::before,
-    .heart-button::after {
-      content: "";
-      width: 150px;
-      height: 150px;
-      background: red;
-      border-radius: 50%;
+    p {
+      text-align: center;
+      font-size: 20px;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .foto {
       position: absolute;
-    }
-
-    .heart-button::before {
-      top: -75px;
-      left: 0;
-    }
-
-    .heart-button::after {
-      left: 75px;
-      top: 0;
-    }
-
-    @keyframes beat {
-      0%, 100% { transform: scale(1) rotate(-45deg); }
-      50% { transform: scale(1.2) rotate(-45deg); }
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
-  <button class="heart-button" onclick="redirect()">Eu te amo ❤️</button>
+
+  <h1>Edilane, eu te amo ❤️</h1>
+  <p>Sou eu, Alisson da Cruz Silva, que fiz este site para você. Obrigado por ser minha namorada maravilhosa!</p>
+
+  <!-- Fotos de vocês -->
+  <img src="foto1.jpg" class="foto">
+  <img src="foto2.jpg" class="foto">
+  <img src="foto3.jpg" class="foto">
+  <img src="foto4.jpg" class="foto">
+  <img src="foto5.jpg" class="foto">
 
   <script>
-    function redirect() {
-      window.location.href = 'presente.html';
-    }
+    const fotos = document.querySelectorAll('.foto');
+
+    fotos.forEach(foto => {
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
+      let dx = (Math.random() - 0.5) * 2;
+      let dy = (Math.random() - 0.5) * 2;
+      foto.style.left = x + 'px';
+      foto.style.top = y + 'px';
+
+      function move() {
+        x += dx;
+        y += dy;
+
+        if (x < 0 || x + foto.offsetWidth > window.innerWidth) dx *= -1;
+        if (y < 0 || y + foto.offsetHeight > window.innerHeight) dy *= -1;
+
+        foto.style.left = x + 'px';
+        foto.style.top = y + 'px';
+
+        requestAnimationFrame(move);
+      }
+      move();
+    });
   </script>
 </body>
 </html>
