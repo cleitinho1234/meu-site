@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Edilane</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      height: 100vh;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      color: #ff1a75;
+    }
+
+    p {
+      text-align: center;
+      font-size: 20px;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .foto {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Edilane, eu te amo ❤️</h1>
+  <p>Sou eu, Alisson da Cruz Silva, que fiz este site para você. Obrigado por ser minha namorada maravilhosa!</p>
+
+  <!-- Fotos de vocês -->
+  <img src="foto1.jpg" class="foto">
+  <img src="foto2.jpg" class="foto">
+  <img src="foto3.jpg" class="foto">
+
+  <script>
+    const fotos = document.querySelectorAll('.foto');
+
+    fotos.forEach(foto => {
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
+      let dx = (Math.random() - 0.5) * 2;
+      let dy = (Math.random() - 0.5) * 2;
+      foto.style.left = x + 'px';
+      foto.style.top = y + 'px';
+
+      function move() {
+        x += dx;
+        y += dy;
+
+        if (x < 0 || x + foto.offsetWidth > window.innerWidth) dx *= -1;
+        if (y < 0 || y + foto.offsetHeight > window.innerHeight) dy *= -1;
+
+        foto.style.left = x + 'px';
+        foto.style.top = y + 'px';
+
+        requestAnimationFrame(move);
+      }
+      move();
+    });
+  </script>
+</body>
+</html>
