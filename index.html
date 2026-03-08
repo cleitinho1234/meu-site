@@ -17,17 +17,23 @@ overflow:hidden;
 font-family:Arial;
 }
 
-.heart{
+.container{
 position:relative;
+width:200px;
+height:200px;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+}
+
+.heart{
+position:absolute;
 width:180px;
 height:180px;
 background:red;
 transform:rotate(-45deg);
-cursor:pointer;
 animation:beat 1s infinite;
-display:flex;
-justify-content:center;
-align-items:center;
 }
 
 .heart:before,
@@ -52,13 +58,11 @@ top:0;
 
 .text{
 position:absolute;
-transform:rotate(45deg);
 color:white;
 font-weight:bold;
-font-size:22px;
+font-size:26px;
 text-align:center;
-width:160px;
-line-height:1.2;
+z-index:2;
 animation:textBeat 1s infinite;
 }
 
@@ -68,8 +72,8 @@ animation:textBeat 1s infinite;
 }
 
 @keyframes textBeat{
-0%,100%{transform:rotate(45deg) scale(1);}
-50%{transform:rotate(45deg) scale(1.15);}
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
 }
 
 .particle{
@@ -89,8 +93,12 @@ animation:fly 1s linear forwards;
 
 <body>
 
-<div class="heart" onclick="loveClick()">
+<div class="container" onclick="loveClick()">
+
+<div class="heart"></div>
+
 <div class="text">Eu te amo ❤️</div>
+
 </div>
 
 <script>
