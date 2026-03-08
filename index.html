@@ -17,6 +17,7 @@ overflow:hidden;
 font-family:Arial;
 }
 
+/* container do coração */
 .container{
 position:relative;
 width:200px;
@@ -25,8 +26,10 @@ display:flex;
 justify-content:center;
 align-items:center;
 cursor:pointer;
+z-index:2;
 }
 
+/* coração principal */
 .heart{
 position:absolute;
 width:180px;
@@ -76,9 +79,10 @@ animation:textBeat 1s infinite;
 50%{transform:scale(1.2);}
 }
 
+/* partículas de clique */
 .particle{
 position:absolute;
-font-size:20px;
+font-size:22px;
 pointer-events:none;
 animation:fly 1s linear forwards;
 }
@@ -88,12 +92,32 @@ animation:fly 1s linear forwards;
 100%{opacity:0; transform:translate(var(--x),var(--y));}
 }
 
+/* chuva de corações */
+.fall{
+position:absolute;
+top:-50px;
+font-size:18px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
-<body>
+<body onclick="loveClick(event)">
 
-<div class="container" onclick="loveClick()">
+<div class="container">
 
 <div class="heart"></div>
 
@@ -103,28 +127,71 @@ animation:fly 1s linear forwards;
 
 <script>
 
-function loveClick(){
+/* CHUVA DE CORAÇÕES E EU TE AMO */
+
+function createRain(){
+
+let item=document.createElement("div")
+
+item.className="fall"
+
+/* aleatório coração ou texto */
+
+if(Math.random() < 0.5){
+item.innerHTML="❤️"
+}else{
+item.innerHTML="Eu te amo"
+}
+
+item.style.left=Math.random()*100+"vw"
+item.style.fontSize=(14+Math.random()*20)+"px"
+
+let duration=4+Math.random()*4
+item.style.animationDuration=duration+"s"
+
+document.body.appendChild(item)
+
+setTimeout(()=>item.remove(),duration*1000)
+
+}
+
+setInterval(createRain,300)
+
+
+
+/* CLIQUE COM PARTICULAS ALEATORIAS */
+
+function loveClick(e){
+
+let clickX=e.clientX
+let clickY=e.clientY
+
+/* decide aleatoriamente corações ou rosas */
+
+let tipo = Math.random() < 0.5 ? "❤️" : "🤍🌹"
 
 for(let i=0;i<25;i++){
 
-let heart=document.createElement("div")
-heart.className="particle"
-heart.innerHTML="❤️"
+let particle=document.createElement("div")
+particle.className="particle"
+particle.innerHTML=tipo
 
 let x=(Math.random()*300)-150
 let y=(Math.random()*300)-150
 
-heart.style.setProperty('--x',x+'px')
-heart.style.setProperty('--y',y+'px')
+particle.style.setProperty('--x',x+'px')
+particle.style.setProperty('--y',y+'px')
 
-heart.style.left=window.innerWidth/2+"px"
-heart.style.top=window.innerHeight/2+"px"
+particle.style.left=clickX+"px"
+particle.style.top=clickY+"px"
 
-document.body.appendChild(heart)
+document.body.appendChild(particle)
 
-setTimeout(()=>heart.remove(),1000)
+setTimeout(()=>particle.remove(),1000)
 
 }
+
+/* ir para proxima pagina */
 
 setTimeout(()=>{
 window.location.href="presente.html"
