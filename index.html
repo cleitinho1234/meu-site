@@ -79,7 +79,7 @@ animation:textBeat 1s infinite;
 50%{transform:scale(1.2);}
 }
 
-/* partículas de clique */
+/* partículas */
 .particle{
 position:absolute;
 font-size:22px;
@@ -92,7 +92,7 @@ animation:fly 1s linear forwards;
 100%{opacity:0; transform:translate(var(--x),var(--y));}
 }
 
-/* chuva de corações */
+/* chuva */
 .fall{
 position:absolute;
 top:-50px;
@@ -115,9 +115,9 @@ opacity:0;
 </style>
 </head>
 
-<body onclick="loveClick(event)">
+<body onclick="particles(event)">
 
-<div class="container">
+<div class="container" onclick="goNext(event)">
 
 <div class="heart"></div>
 
@@ -127,15 +127,12 @@ opacity:0;
 
 <script>
 
-/* CHUVA DE CORAÇÕES E EU TE AMO */
+/* CHUVA DE CORAÇÕES */
 
 function createRain(){
 
 let item=document.createElement("div")
-
 item.className="fall"
-
-/* aleatório coração ou texto */
 
 if(Math.random() < 0.5){
 item.innerHTML="❤️"
@@ -159,16 +156,14 @@ setInterval(createRain,300)
 
 
 
-/* CLIQUE COM PARTICULAS ALEATORIAS */
+/* PARTICULAS AO CLICAR NA TELA */
 
-function loveClick(e){
+function particles(e){
 
 let clickX=e.clientX
 let clickY=e.clientY
 
-/* decide aleatoriamente corações ou rosas */
-
-let tipo = Math.random() < 0.5 ? "❤️" : "🤍🌹"
+let tipo = Math.random() < 0.5 ? "❤️" : "🌹"
 
 for(let i=0;i<25;i++){
 
@@ -191,7 +186,16 @@ setTimeout(()=>particle.remove(),1000)
 
 }
 
-/* ir para proxima pagina */
+}
+
+
+/* CLICAR NO CORAÇÃO VAI PARA PAGINA 2 */
+
+function goNext(e){
+
+e.stopPropagation()
+
+particles(e)
 
 setTimeout(()=>{
 window.location.href="presente.html"
