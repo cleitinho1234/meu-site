@@ -14,7 +14,7 @@ font-family:Arial;
 background:#ffe6f0;
 }
 
-/* FUNDO COM FOTOS */
+/* FUNDO */
 
 .fundo{
 position:fixed;
@@ -43,7 +43,7 @@ display:none;
 z-index:1000;
 }
 
-/* FRASE DO PRIMEIRO ENCONTRO */
+/* FRASE */
 
 #fraseEncontro{
 position:absolute;
@@ -58,14 +58,8 @@ animation:aparecerTexto 2s;
 }
 
 @keyframes aparecerTexto{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 /* ESTRELAS */
@@ -131,7 +125,7 @@ animation:flutuar linear infinite;
 100%{transform:translateY(-100vh);}
 }
 
-/* VISUALIZADOR */
+/* VIEWER */
 
 .viewer{
 position:fixed;
@@ -166,7 +160,7 @@ cursor:pointer;
 
 .particle{
 position:absolute;
-font-size:20px;
+font-size:22px;
 pointer-events:none;
 animation:explode 1s linear forwards;
 }
@@ -247,32 +241,20 @@ clearInterval(fade)
 window.addEventListener("load",tocarMusica)
 document.addEventListener("click",tocarMusica)
 
-/* FUNDO COM FOTOS */
+/* FUNDO */
 
 const fotosFundo=[
-"foto1.jpg",
-"foto2.jpg",
-"foto3.jpg",
-"foto4.jpg",
-"foto5.jpg",
-"foto6.jpg",
-"foto7.jpg",
-"foto8.jpg"
+"foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg",
+"foto5.jpg","foto6.jpg","foto7.jpg","foto8.jpg"
 ]
 
 let fundo=document.getElementById("fundo")
 let indice=0
 
 function trocarFundo(){
-
 fundo.style.backgroundImage="url("+fotosFundo[indice]+")"
-
 indice++
-
-if(indice>=fotosFundo.length){
-indice=0
-}
-
+if(indice>=fotosFundo.length) indice=0
 }
 
 trocarFundo()
@@ -281,16 +263,53 @@ setInterval(trocarFundo,5000)
 /* ESTRELAS */
 
 for(let i=0;i<80;i++){
-
 let estrela=document.createElement("div")
 estrela.className="estrela"
-
 estrela.style.left=Math.random()*100+"vw"
 estrela.style.top=Math.random()*100+"vh"
-
 document.body.appendChild(estrela)
+}
+
+/* PARTICULAS CORAÇÃO + ROSA */
+
+function explodirCoracoes(x,y){
+
+let icons=["❤️","🤍🌹"]
+
+for(let i=0;i<30;i++){
+
+let particle=document.createElement("div")
+particle.className="particle"
+
+particle.innerHTML=icons[Math.floor(Math.random()*icons.length)]
+
+let dx=(Math.random()*300)-150
+let dy=(Math.random()*300)-150
+
+particle.style.setProperty('--x',dx+'px')
+particle.style.setProperty('--y',dy+'px')
+
+particle.style.left=x+"px"
+particle.style.top=y+"px"
+
+document.body.appendChild(particle)
+
+setTimeout(()=>particle.remove(),1000)
 
 }
+
+}
+
+/* CLIQUE NA TELA */
+
+document.addEventListener("click",(e)=>{
+
+if(e.target.classList.contains("foto")) return
+if(e.target.classList.contains("voltar")) return
+
+explodirCoracoes(e.clientX,e.clientY)
+
+})
 
 /* FOTOS */
 
@@ -327,34 +346,10 @@ mover()
 
 foto.addEventListener("click",(e)=>{
 
-let x=e.clientX
-let y=e.clientY
-
-explodirCoracoes(x,y)
+explodirCoracoes(e.clientX,e.clientY)
 
 imagemGrande.src=foto.src
 viewer.style.display="flex"
-
-document.getElementById("fraseEncontro").style.display="none"
-
-if(foto.classList.contains("primeiro")){
-
-document.getElementById("primeiroTexto").style.display="block"
-
-setTimeout(()=>{
-
-let centroX=window.innerWidth/2
-let centroY=window.innerHeight/2
-
-for(let i=0;i<30;i++){
-explodirCoracoes(centroX,centroY)
-}
-
-document.getElementById("fraseEncontro").style.display="block"
-
-},300)
-
-}
 
 })
 
@@ -362,35 +357,6 @@ document.getElementById("fraseEncontro").style.display="block"
 
 function fechar(){
 viewer.style.display="none"
-document.getElementById("primeiroTexto").style.display="none"
-document.getElementById("fraseEncontro").style.display="none"
-}
-
-/* PARTICULAS */
-
-function explodirCoracoes(x,y){
-
-for(let i=0;i<25;i++){
-
-let heart=document.createElement("div")
-heart.className="particle"
-heart.innerHTML="❤️"
-
-let dx=(Math.random()*300)-150
-let dy=(Math.random()*300)-150
-
-heart.style.setProperty('--x',dx+'px')
-heart.style.setProperty('--y',dy+'px')
-
-heart.style.left=x+"px"
-heart.style.top=y+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),1000)
-
-}
-
 }
 
 /* CORAÇÕES SUBINDO */
