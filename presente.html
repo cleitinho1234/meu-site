@@ -168,23 +168,29 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 
 <script>
 
-/* MUSICA FADE IN */
+/* MUSICA SEM TRAVAR */
 
-const musica=document.getElementById("musica")
+const musica = document.getElementById("musica")
+
+let musicaIniciada = false
 
 function tocarMusica(){
 
-musica.volume=0
+if(musicaIniciada) return
+
+musicaIniciada = true
+
+musica.volume = 0
 musica.play().catch(()=>{})
 
-let volume=0
+let volume = 0
 
-let fade=setInterval(()=>{
+let fade = setInterval(()=>{
 
-if(volume<1){
+if(volume < 1){
 
-volume+=0.02
-musica.volume=volume
+volume += 0.02
+musica.volume = volume
 
 }else{
 
@@ -196,8 +202,8 @@ clearInterval(fade)
 
 }
 
-window.addEventListener("load",tocarMusica)
-document.body.addEventListener("click",tocarMusica)
+window.addEventListener("load", tocarMusica)
+document.addEventListener("click", tocarMusica)
 
 /* ESTRELAS */
 
@@ -221,8 +227,8 @@ const imagemGrande=document.getElementById("imagemGrande")
 
 fotos.forEach(foto=>{
 
-let x=Math.random()*window.innerWidth
-let y=Math.random()*window.innerHeight
+let x=Math.random()*(window.innerWidth-120)
+let y=Math.random()*(window.innerHeight-120)
 let dx=(Math.random()-0.5)*2
 let dy=(Math.random()-0.5)*2
 
