@@ -1,76 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Edilane</title>
-  <style>
-    body {
-      background: #ffe6f0;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      height: 100vh;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edilane ❤️</title>
 
-    h1 {
-      text-align: center;
-      margin-top: 50px;
-      color: #ff1a75;
-    }
+<style>
 
-    p {
-      text-align: center;
-      font-size: 20px;
-      color: #333;
-      margin-top: 20px;
-    }
+body{
+background:#ffe6f0;
+overflow:hidden;
+margin:0;
+font-family:Arial;
+}
 
-    .foto {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-  </style>
+h1{
+text-align:center;
+margin-top:40px;
+color:#ff1a75;
+}
+
+p{
+text-align:center;
+font-size:20px;
+margin-bottom:30px;
+}
+
+.foto{
+position:absolute;
+width:120px;
+height:120px;
+border-radius:12px;
+object-fit:cover;
+}
+
+.coracao{
+position:absolute;
+font-size:20px;
+opacity:0.6;
+animation:flutuar linear infinite;
+}
+
+@keyframes flutuar{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-100vh);}
+}
+
+</style>
 </head>
+
 <body>
 
-  <h1>Edilane, eu te amo ❤️</h1>
-  <p>Sou eu, Alisson da Cruz Silva, que fiz este site para você. Obrigado por ser minha namorada maravilhosa!</p>
+<h1>Edilane, eu te amo ❤️</h1>
 
-  <!-- Fotos de vocês -->
-  <img src="foto1.jpg" class="foto">
-  <img src="foto2.jpg" class="foto">
-  <img src="foto3.jpg" class="foto">
+<p>
+Esse site foi feito com carinho por mim,<br>
+<strong>Alisson da Cruz Silva</strong>,<br>
+para agradecer você por ser minha namorada maravilhosa.
+</p>
 
-  <script>
-    const fotos = document.querySelectorAll('.foto');
+<img src="foto1.jpg" class="foto">
+<img src="foto2.jpg" class="foto">
+<img src="foto3.jpg" class="foto">
+<img src="foto4.jpg" class="foto">
+<img src="foto5.jpg" class="foto">
 
-    fotos.forEach(foto => {
-      let x = Math.random() * window.innerWidth;
-      let y = Math.random() * window.innerHeight;
-      let dx = (Math.random() - 0.5) * 2;
-      let dy = (Math.random() - 0.5) * 2;
-      foto.style.left = x + 'px';
-      foto.style.top = y + 'px';
+<script>
 
-      function move() {
-        x += dx;
-        y += dy;
+const fotos=document.querySelectorAll(".foto")
 
-        if (x < 0 || x + foto.offsetWidth > window.innerWidth) dx *= -1;
-        if (y < 0 || y + foto.offsetHeight > window.innerHeight) dy *= -1;
+fotos.forEach(foto=>{
 
-        foto.style.left = x + 'px';
-        foto.style.top = y + 'px';
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
+let dx=(Math.random()-0.5)*2
+let dy=(Math.random()-0.5)*2
 
-        requestAnimationFrame(move);
-      }
-      move();
-    });
-  </script>
+foto.style.left=x+"px"
+foto.style.top=y+"px"
+
+function mover(){
+
+x+=dx
+y+=dy
+
+if(x<0 || x+120>window.innerWidth) dx*=-1
+if(y<0 || y+120>window.innerHeight) dy*=-1
+
+foto.style.left=x+"px"
+foto.style.top=y+"px"
+
+requestAnimationFrame(mover)
+
+}
+
+mover()
+
+})
+
+function criarCoracoes(){
+
+let heart=document.createElement("div")
+heart.className="coracao"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),10000)
+
+}
+
+setInterval(criarCoracoes,800)
+
+</script>
+
 </body>
 </html>
