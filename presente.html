@@ -14,6 +14,26 @@ margin:0;
 font-family:Arial;
 }
 
+/* TEXTO DO PRIMEIRO ENCONTRO */
+
+#primeiroTexto{
+position:fixed;
+top:10px;
+width:100%;
+text-align:center;
+font-size:28px;
+color:#ff1a75;
+font-weight:bold;
+display:none;
+animation:aparecer 1s;
+z-index:1000;
+}
+
+@keyframes aparecer{
+from{opacity:0;}
+to{opacity:1;}
+}
+
 /* ESTRELAS */
 
 .estrela{
@@ -122,6 +142,8 @@ animation:explode 1s linear forwards;
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
+<div id="primeiroTexto">Nosso Primeiro Encontro ❤️</div>
+
 <h1>Edilane Santos ❤️</h1>
 
 <p>
@@ -137,6 +159,7 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 <img src="foto3.jpg" class="foto">
 <img src="foto4.jpg" class="foto">
 <img src="foto5.jpg" class="foto">
+<img src="foto6.jpg" class="foto primeiro">
 
 <div class="viewer" id="viewer">
 <div class="voltar" onclick="fechar()">⬅</div>
@@ -145,23 +168,23 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 
 <script>
 
-/* MUSICA COM FADE IN */
+/* MUSICA FADE IN */
 
-const musica = document.getElementById("musica")
+const musica=document.getElementById("musica")
 
 function tocarMusica(){
 
-musica.volume = 0
+musica.volume=0
 musica.play().catch(()=>{})
 
-let volume = 0
+let volume=0
 
-let fade = setInterval(()=>{
+let fade=setInterval(()=>{
 
-if(volume < 1){
+if(volume<1){
 
-volume += 0.02
-musica.volume = volume
+volume+=0.02
+musica.volume=volume
 
 }else{
 
@@ -173,8 +196,8 @@ clearInterval(fade)
 
 }
 
-window.addEventListener("load", tocarMusica)
-document.body.addEventListener("click", tocarMusica)
+window.addEventListener("load",tocarMusica)
+document.body.addEventListener("click",tocarMusica)
 
 /* ESTRELAS */
 
@@ -226,6 +249,18 @@ mover()
 foto.addEventListener("click",(e)=>{
 
 explodirCoracoes(e.clientX,e.clientY)
+
+/* FOTO ESPECIAL */
+
+if(foto.classList.contains("primeiro")){
+
+document.getElementById("primeiroTexto").style.display="block"
+
+for(let i=0;i<60;i++){
+explodirCoracoes(e.clientX,e.clientY)
+}
+
+}
 
 imagemGrande.src=foto.src
 viewer.style.display="flex"
