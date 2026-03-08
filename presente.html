@@ -14,6 +14,46 @@ margin:0;
 font-family:Arial;
 }
 
+/* FUNDO ROMANTICO */
+
+.fundoRomantico{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0.3);
+opacity:0;
+width:80vw;
+height:80vh;
+background-size:cover;
+background-position:center;
+border-radius:20px;
+z-index:-1;
+animation:fundoAnim 10s linear forwards;
+filter:blur(2px) brightness(0.8);
+}
+
+@keyframes fundoAnim{
+
+0%{
+transform:translate(-50%,-50%) scale(0.3);
+opacity:0;
+}
+
+20%{
+opacity:0.4;
+}
+
+80%{
+opacity:0.4;
+}
+
+100%{
+transform:translate(-50%,-50%) scale(1.4);
+opacity:0;
+}
+
+}
+
 /* TEXTO PRIMEIRO ENCONTRO */
 
 #primeiroTexto{
@@ -25,13 +65,7 @@ font-size:28px;
 color:#ff1a75;
 font-weight:bold;
 display:none;
-animation:aparecer 1s;
 z-index:1000;
-}
-
-@keyframes aparecer{
-from{opacity:0;}
-to{opacity:1;}
 }
 
 /* ESTRELAS */
@@ -178,42 +212,67 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 
 <script>
 
-/* MUSICA SEM TRAVAR */
+/* MUSICA */
 
-const musica = document.getElementById("musica")
+const musica=document.getElementById("musica")
 
-let musicaIniciada = false
+let musicaIniciada=false
 
 function tocarMusica(){
 
 if(musicaIniciada) return
 
-musicaIniciada = true
+musicaIniciada=true
 
-musica.volume = 0
+musica.volume=0
 musica.play().catch(()=>{})
 
-let volume = 0
+let volume=0
 
-let fade = setInterval(()=>{
+let fade=setInterval(()=>{
 
-if(volume < 1){
-
-volume += 0.02
-musica.volume = volume
-
+if(volume<1){
+volume+=0.02
+musica.volume=volume
 }else{
-
 clearInterval(fade)
-
 }
 
 },200)
 
 }
 
-window.addEventListener("load", tocarMusica)
-document.addEventListener("click", tocarMusica)
+window.addEventListener("load",tocarMusica)
+document.addEventListener("click",tocarMusica)
+
+/* FUNDO ROMANTICO */
+
+const imagensRomanticas=[
+"https://images.unsplash.com/photo-1518199266791-5375a83190b7",
+"https://images.unsplash.com/photo-1522673607200-164d1b6ce486",
+"https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+"https://images.unsplash.com/photo-1516589091380-5d8e87df6999",
+"https://images.unsplash.com/photo-1501908734255-16579c18c25f"
+]
+
+function criarFundo(){
+
+let div=document.createElement("div")
+div.className="fundoRomantico"
+
+let img=imagensRomanticas[Math.floor(Math.random()*imagensRomanticas.length)]
+
+div.style.backgroundImage="url("+img+")"
+
+document.body.appendChild(div)
+
+setTimeout(()=>{
+div.remove()
+},10000)
+
+}
+
+setInterval(criarFundo,5000)
 
 /* ESTRELAS */
 
@@ -266,8 +325,6 @@ foto.addEventListener("click",(e)=>{
 
 explodirCoracoes(e.clientX,e.clientY)
 
-/* FOTO ESPECIAL */
-
 if(foto.classList.contains("primeiro")){
 
 document.getElementById("primeiroTexto").style.display="block"
@@ -289,7 +346,7 @@ function fechar(){
 viewer.style.display="none"
 }
 
-/* EXPLOSÃO DE CORAÇÕES */
+/* CORAÇÕES EXPLOSÃO */
 
 function explodirCoracoes(x,y){
 
@@ -316,7 +373,7 @@ setTimeout(()=>heart.remove(),1000)
 
 }
 
-/* CORAÇÕES FLUTUANDO */
+/* CORAÇÕES SUBINDO */
 
 function criarCoracoes(){
 
