@@ -29,7 +29,7 @@ z-index:-2;
 transition:background-image 2s;
 }
 
-/* TEXTO PRIMEIRO ENCONTRO */
+/* TEXTO */
 
 #primeiroTexto{
 position:fixed;
@@ -300,20 +300,30 @@ mover()
 
 foto.addEventListener("click",(e)=>{
 
-explodirCoracoes(e.clientX,e.clientY)
+let x=e.clientX
+let y=e.clientY
+
+explodirCoracoes(x,y)
+
+imagemGrande.src=foto.src
+viewer.style.display="flex"
 
 if(foto.classList.contains("primeiro")){
 
 document.getElementById("primeiroTexto").style.display="block"
 
-for(let i=0;i<60;i++){
-explodirCoracoes(e.clientX,e.clientY)
+setTimeout(()=>{
+
+let centroX=window.innerWidth/2
+let centroY=window.innerHeight/2
+
+for(let i=0;i<30;i++){
+explodirCoracoes(centroX,centroY)
 }
 
-}
+},200)
 
-imagemGrande.src=foto.src
-viewer.style.display="flex"
+}
 
 })
 
@@ -323,7 +333,7 @@ function fechar(){
 viewer.style.display="none"
 }
 
-/* CORAÇÕES EXPLOSÃO */
+/* CORAÇÕES */
 
 function explodirCoracoes(x,y){
 
