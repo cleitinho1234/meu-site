@@ -19,8 +19,8 @@ font-family:Arial;
 
 .heart{
 position:relative;
-width:150px;
-height:150px;
+width:180px;
+height:180px;
 background:red;
 transform:rotate(-45deg);
 cursor:pointer;
@@ -34,19 +34,19 @@ align-items:center;
 .heart:after{
 content:"";
 position:absolute;
-width:150px;
-height:150px;
+width:180px;
+height:180px;
 background:red;
 border-radius:50%;
 }
 
 .heart:before{
-top:-75px;
+top:-90px;
 left:0;
 }
 
 .heart:after{
-left:75px;
+left:90px;
 top:0;
 }
 
@@ -55,9 +55,10 @@ position:absolute;
 transform:rotate(45deg);
 color:white;
 font-weight:bold;
-font-size:18px;
+font-size:20px;
 text-align:center;
-width:120px;
+width:140px;
+line-height:1.2;
 }
 
 @keyframes beat{
@@ -83,7 +84,7 @@ animation:fly 1s linear forwards;
 <body>
 
 <div class="heart" onclick="loveClick()">
-<div class="text">te amo ❤️</div>
+<div class="text">Eu te amo ❤️</div>
 </div>
 
 <script>
@@ -121,4 +122,3 @@ window.location.href="presente.html"
 
 </body>
 </html>
-
