@@ -32,6 +32,12 @@ width:120px;
 height:120px;
 border-radius:12px;
 object-fit:cover;
+cursor:pointer;
+transition:transform 0.3s;
+}
+
+.foto:hover{
+transform:scale(1.1);
 }
 
 .coracao{
@@ -44,6 +50,48 @@ animation:flutuar linear infinite;
 @keyframes flutuar{
 0%{transform:translateY(100vh);}
 100%{transform:translateY(-100vh);}
+}
+
+/* TELA CHEIA */
+
+.viewer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.viewer img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.voltar{
+position:absolute;
+top:20px;
+left:20px;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+
+.particle{
+position:absolute;
+font-size:20px;
+pointer-events:none;
+animation:explode 1s linear forwards;
+}
+
+@keyframes explode{
+0%{opacity:1; transform:translate(0,0);}
+100%{opacity:0; transform:translate(var(--x),var(--y));}
 }
 
 </style>
@@ -73,9 +121,18 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 <img src="foto4.jpg" class="foto">
 <img src="foto5.jpg" class="foto">
 
+<!-- VISUALIZADOR -->
+
+<div class="viewer" id="viewer">
+<div class="voltar" onclick="fechar()">⬅</div>
+<img id="imagemGrande">
+</div>
+
 <script>
 
 const fotos=document.querySelectorAll(".foto")
+const viewer=document.getElementById("viewer")
+const imagemGrande=document.getElementById("imagemGrande")
 
 fotos.forEach(foto=>{
 
@@ -104,7 +161,51 @@ requestAnimationFrame(mover)
 
 mover()
 
+/* CLICK FOTO */
+
+foto.addEventListener("click",(e)=>{
+
+explodirCoracoes(e.clientX,e.clientY)
+
+imagemGrande.src=foto.src
+viewer.style.display="flex"
+
 })
+
+})
+
+function fechar(){
+viewer.style.display="none"
+}
+
+/* PARTICULAS */
+
+function explodirCoracoes(x,y){
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div")
+heart.className="particle"
+heart.innerHTML="❤️"
+
+let dx=(Math.random()*300)-150
+let dy=(Math.random()*300)-150
+
+heart.style.setProperty('--x',dx+'px')
+heart.style.setProperty('--y',dy+'px')
+
+heart.style.left=x+"px"
+heart.style.top=y+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),1000)
+
+}
+
+}
+
+/* CORAÇÕES FLUTUANDO */
 
 function criarCoracoes(){
 
