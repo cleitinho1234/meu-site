@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edilane ❤️</title>
+<title>Nossos Momentos ❤️</title>
 
 <style>
 
@@ -29,18 +29,29 @@ z-index:-2;
 transition:background-image 2s;
 }
 
-/* TEXTO */
+/* FRASE DO PRIMEIRO ENCONTRO */
 
-#primeiroTexto{
-position:fixed;
-top:10px;
+#fraseEncontro{
+position:absolute;
+bottom:40px;
 width:100%;
 text-align:center;
-font-size:28px;
-color:#ff1a75;
+font-size:26px;
+color:white;
 font-weight:bold;
 display:none;
-z-index:1000;
+animation:aparecerTexto 2s;
+}
+
+@keyframes aparecerTexto{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* ESTRELAS */
@@ -119,11 +130,12 @@ display:none;
 justify-content:center;
 align-items:center;
 z-index:999;
+flex-direction:column;
 }
 
 .viewer img{
 max-width:90%;
-max-height:90%;
+max-height:80%;
 border-radius:10px;
 }
 
@@ -161,9 +173,7 @@ animation:explode 1s linear forwards;
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<div id="primeiroTexto">Nosso Primeiro Encontro ❤️</div>
-
-<h1>Edilane Santos ❤️</h1>
+<h1>Nossos Momentos ❤️</h1>
 
 <p>
 Com muito carinho ❤️<br><br>
@@ -185,6 +195,7 @@ Obrigado por ser minha namorada e fazer minha vida mais feliz.
 <div class="viewer" id="viewer">
 <div class="voltar" onclick="fechar()">⬅</div>
 <img id="imagemGrande">
+<div id="fraseEncontro">Foi aqui que nossa história começou… ❤️</div>
 </div>
 
 <script>
@@ -308,9 +319,9 @@ explodirCoracoes(x,y)
 imagemGrande.src=foto.src
 viewer.style.display="flex"
 
-if(foto.classList.contains("primeiro")){
+document.getElementById("fraseEncontro").style.display="none"
 
-document.getElementById("primeiroTexto").style.display="block"
+if(foto.classList.contains("primeiro")){
 
 setTimeout(()=>{
 
@@ -321,7 +332,9 @@ for(let i=0;i<30;i++){
 explodirCoracoes(centroX,centroY)
 }
 
-},200)
+document.getElementById("fraseEncontro").style.display="block"
+
+},300)
 
 }
 
@@ -333,7 +346,7 @@ function fechar(){
 viewer.style.display="none"
 }
 
-/* CORAÇÕES */
+/* PARTICULAS */
 
 function explodirCoracoes(x,y){
 
