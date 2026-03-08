@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nossos Momentos ❤️</title>
+<title>Edilane ❤️</title>
 
 <style>
 
@@ -27,6 +27,20 @@ background-position:center;
 opacity:0.15;
 z-index:-2;
 transition:background-image 2s;
+}
+
+/* TEXTO TOPO */
+
+#primeiroTexto{
+position:fixed;
+top:10px;
+width:100%;
+text-align:center;
+font-size:28px;
+color:#ff1a75;
+font-weight:bold;
+display:none;
+z-index:1000;
 }
 
 /* FRASE DO PRIMEIRO ENCONTRO */
@@ -173,7 +187,9 @@ animation:explode 1s linear forwards;
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<h1>Nossos Momentos ❤️</h1>
+<div id="primeiroTexto">Nosso Primeiro Encontro ❤️</div>
+
+<h1>Edilane Santos ❤️</h1>
 
 <p>
 Com muito carinho ❤️<br><br>
@@ -322,6 +338,8 @@ viewer.style.display="flex"
 document.getElementById("fraseEncontro").style.display="none"
 
 if(foto.classList.contains("primeiro")){
+
+document.getElementById("primeiroTexto").style.display="block"
 
 setTimeout(()=>{
 
