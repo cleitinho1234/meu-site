@@ -122,10 +122,6 @@ animation:explode 1s linear forwards;
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="batida">
-<source src="batida.mp3" type="audio/mpeg">
-</audio>
-
 <h1>Edilane Santos ❤️</h1>
 
 <p>
@@ -180,12 +176,7 @@ clearInterval(fade)
 window.addEventListener("load", tocarMusica)
 document.body.addEventListener("click", tocarMusica)
 
-/* SOM DO CORAÇÃO BEM BAIXO */
-
-const batida = document.getElementById("batida")
-batida.volume = 0.15
-
-/* ESTRELAS NO FUNDO */
+/* ESTRELAS */
 
 for(let i=0;i<80;i++){
 
@@ -235,9 +226,6 @@ mover()
 foto.addEventListener("click",(e)=>{
 
 explodirCoracoes(e.clientX,e.clientY)
-
-batida.currentTime=0
-batida.play()
 
 imagemGrande.src=foto.src
 viewer.style.display="flex"
